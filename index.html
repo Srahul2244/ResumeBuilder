@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="index.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        #loader {
+            border-color: red;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8 ">
+        <h1 class="text-3xl font-semibold mb-6">Resume Builder</h1>
+        <form class="bg-white p-6 shadow-md rounded-lg max-w-full ">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
+                <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="phone" class="block text-gray-700 font-bold mb-2">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="w-full px-3 py-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="address" class="block text-gray-700 font-bold mb-2">Address</label>
+                <input type="text" id="address" name="address" class="w-full px-3 py-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="resume" class="block text-gray-700 font-bold mb-2">Upload Resume</label>
+                <input type="file" id="resume" name="resume" class="w-full">
+            </div>
+            <div class="mb-4">
+                <label for="experience" class="block text-gray-700 font-bold mb-2">Work Experience</label>
+                <textarea id="experience" name="experience" class="w-full px-3 py-2 border rounded-lg"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="education" class="block text-gray-700 font-bold mb-2">Education</label>
+                <textarea id="education" name="education" class="w-full px-3 py-2 border rounded-lg"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="skills" class="block text-gray-700 font-bold mb-2">Skills</label>
+                <select id="skills" name="skills" class="w-full px-3 py-2 border rounded-lg" multiple>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="ReactJS">ReactJS</option>
+                    <option value="Redux">Redux</option>
+                    <option value="Thunk">Thunk</option>
+                    <option value="Express">Express</option>
+                    <option value="MongoDB">MongoDB</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="cover-letter" class="block text-gray-700 font-bold mb-2">Cover Letter</label>
+                <textarea id="cover_letter" name="cover_letter" class="w-full px-3 py-2 border rounded-lg"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="summary" class="block text-gray-700 font-bold mb-2">Summary</label>
+                <textarea id="summary" name="summary" class="w-full px-3 py-2 border rounded-lg"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="certifications" class="block text-gray-700 font-bold mb-2">Certifications</label>
+                <input type="text" id="certifications" name="certifications" class="w-full px-3 py-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="languages" class="block text-gray-700 font-bold mb-2">Languages</label>
+                <select id="languages" name="languages" class="w-full px-3 py-2 border rounded-lg">
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                </select>
+            </div>
+            <div class="mt-6 relative">
+                <button type="submit" id="submit-button"
+                    class="relative bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Submit
+                    <div id="loader"
+                        class="hidden animate-spin absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 border-t-2 border-blue-500 border-solid rounded-full">
+                    </div>
+                </button>
+            </div>
+    </div>
+    </form>
+    </div>
+    <div class="overflow-y-auto max-h-400">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">id</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Email
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Phone
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Address
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Resume
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">
+                        Experience</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Education
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Skills
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Cover
+                        Letter</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Summary
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">
+                        Certifications</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Languages
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Delete
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">View</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+
+        <!-- view modal -->
+        <div id="view-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+            <div class="modal-overlay fixed inset-0 bg-black opacity-50"></div>
+            <div class="modal-container bg-white w-2/3 mx-auto rounded shadow-lg z-50 overflow-y-auto">
+                <div class="modal-content py-4 text-left px-6">
+                    <h2 class="text-2xl font-semibold text-indigo-600 mb-4">View Record</h2>
+                    <ul id="view-details">
+                    </ul>
+                    <button id="close-view-modal"
+                        class="mt-6 bg-gray-400 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-700 transition duration-300 ease-in-out">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit modal -->
+    <div id="edit-modal"
+        class="hidden fixed inset-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
+        <div class="bg-white p-8 rounded shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Edit Details</h2>
+            <form id="edit-form">
+                <!-- Add input fields here for editing -->
+                <label for="edit-name">Name:</label>
+                <input type="text" id="edit-name" name="edit-name" class="mb-4">
+                <label for="edit-name">Email:</label>
+                <input type="email" id="edit-email" name="edit-email" class="mb-4">
+                <label for="edit-name">phone:</label>
+                <input type="number" id="edit-phone" name="edit-phone" class="mb-4">
+
+                <!-- Add more input fields for other properties you want to edit -->
+
+                <div class="flex justify-end">
+                    <button type="button" id="close-edit"
+                        class="bg-red-500 text-white px-2 py-1 rounded mr-2">Close</button>
+                    <button type="submit" id="save-changes" class="bg-green-500 text-white px-2 py-1 rounded">Save
+                        Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    const form = document.querySelector("form");
+    const submitButton = document.getElementById("submit-button");
+    const loader = document.getElementById("loader");
+    let taskArr = [];
+    let taskId = 0;
+
+    const resumeApp = event => {
+        event.preventDefault();
+
+        submitButton.setAttribute("disabled", "disabled");
+        loader.classList.remove("hidden");
+        setTimeout(function () {
+            submitButton.removeAttribute("disabled");
+            loader.classList.add("hidden");
+        }, 2000);
+
+        const taskObj = {
+            id: taskId++,
+            name: form.name.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            address: form.address.value,
+            resume: form.resume.value,
+            experience: form.experience.value,
+            education: form.education.value,
+            skills: form.skills.value,
+            cover_letter: form.cover_letter.value,
+            summary: form.summary.value,
+            certifications: form.certifications.value,
+            languages: form.languages.value,
+        };
+
+        taskArr.push(taskObj);
+        localStorage.setItem("desc", JSON.stringify(taskArr));
+        window.location.reload()
+    };
+
+    form.addEventListener("submit", resumeApp);
+
+    // table...
+    let tableArr = JSON.parse(localStorage.getItem("desc")) || [];
+    display(tableArr);
+
+    function display(tableArr) {
+        document.querySelector("tbody").innerHTML = "";
+        tableArr.forEach(function (ele, index) {
+            let row = document.createElement("tr");
+            let id = document.createElement("td");
+            id.innerText = ele.id;
+            let col1 = document.createElement("td");
+            col1.innerText = ele.name;
+            let col2 = document.createElement("td");
+            col2.innerText = ele.email;
+            let col3 = document.createElement("td");
+            col3.innerText = ele.phone;
+            let col4 = document.createElement("td");
+            col4.innerText = ele.address;
+            let col5 = document.createElement("td");
+            col5.innerText = ele.resume;
+            let col6 = document.createElement("td");
+            col6.innerText = ele.experience;
+            let col7 = document.createElement("td");
+            col7.innerText = ele.education;
+            let col8 = document.createElement("td");
+            col8.innerText = ele.skills;
+            let col9 = document.createElement("td");
+            col9.innerText = ele.cover_letter;
+            let col10 = document.createElement("td");
+            col10.innerText = ele.summary;
+            let col11 = document.createElement("td");
+            col11.innerText = ele.certifications;
+            let col12 = document.createElement("td");
+            col12.innerText = ele.languages;
+            let col13 = document.createElement("td");
+            const deleteButton = document.createElement("button");
+            deleteButton.innerText = "Delete";
+            deleteButton.classList.add(
+                "bg-red-500",
+                "text-white",
+                "px-2",
+                "py-1",
+                "rounded"
+            );
+            deleteButton.addEventListener("click", () => {
+                Delete(ele.id);
+            });
+            col13.appendChild(deleteButton);
+            const Col14 = document.createElement("td");
+            const viewButton = document.createElement("button");
+            viewButton.innerText = "View";
+            viewButton.classList.add(
+                "bg-blue-500",
+                "text-white",
+                "px-2",
+                "py-1",
+                "rounded",
+                "mr-2"
+            );
+            viewButton.addEventListener("click", () => {
+                view(ele);
+            });
+            Col14.appendChild(viewButton);
+
+            const Col15 = document.createElement("td");
+            const editButton = document.createElement("button");
+            editButton.innerText = "Edit";
+            editButton.classList.add(
+                "bg-green-500",
+                "text-white",
+                "px-2",
+                "py-1",
+                "rounded",
+                "mr-2"
+            );
+            editButton.addEventListener("click", function () {
+                edit(ele);
+            });
+            Col15.appendChild(editButton);
+
+            row.append(
+                id,
+                col1,
+                col2,
+                col3,
+                col4,
+                col5,
+                col6,
+                col7,
+                col8,
+                col9,
+                col10,
+                col11,
+                col12,
+                col13,
+                Col14,
+                Col15
+            );
+            document.querySelector("tbody").append(row);
+        });
+    }
+
+    function Delete(id) {
+        const sortedArray = tableArr.filter(items => items.id !== id);
+        localStorage.setItem("desc", JSON.stringify(sortedArray));
+        display(sortedArray);
+        window.location.reload();
+    }
+
+    // function view(ele) {
+    //   localStorage.setItem("descs", JSON.stringify(ele));
+    // }
+
+    function view(ele) {
+        const viewModal = document.getElementById("view-modal");
+        const viewDetails = document.getElementById("view-details");
+        viewDetails.innerHTML = "";
+
+        for (const key in ele) {
+            if (ele.hasOwnProperty(key)) {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<span class="text-indigo-600 font-semibold">${key}:</span> ${ele[
+                    key
+                ]}`;
+                viewDetails.appendChild(listItem);
+            }
+        }
+
+        viewModal.classList.remove("hidden");
+    }
+
+    document.getElementById("close-view-modal").addEventListener("click", () => {
+        const viewModal = document.getElementById("view-modal");
+        viewModal.classList.add("hidden");
+    });
+
+    function edit(ele) {
+        const editModal = document.getElementById("edit-modal");
+        const editForm = document.getElementById("edit-form");
+        document.getElementById("edit-name").value = ele.name;
+        editModal.classList.remove("hidden");
+        document.getElementById("close-edit").addEventListener("click", () => {
+            editModal.classList.add("hidden");
+        });
+        editForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const updatedName = document.getElementById("edit-name").value;
+            const updatedTableArr = tableArr.map(item => {
+                if (item.id === ele.id) {
+                    return {
+                        ...item,
+                        name: updatedName,
+                    };
+                }
+                return item;
+            });
+            localStorage.setItem("desc", JSON.stringify(updatedTableArr));
+            editModal.classList.add("hidden");
+            display(updatedTableArr);
+        });
+    }
+
+
+
+</script>
+
+</html>
